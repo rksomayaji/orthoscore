@@ -5,6 +5,7 @@
     <string name="stiffness_label">Stiffness</string>
     <string name="difficulty_label">Difficulty in performing</string>
     <string name="result_default">Will show result here</string>
+    <string name="checkupdate_button">Check for Update</string>
 
     <string-array name="scale">
         <item>0 (Never)</item>
