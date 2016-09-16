@@ -9,7 +9,7 @@
     <string name="about_menu_title">About</string>
     <string name="settings_menu_title">Settings</string>
     <string name="url_download">https://api.github.com/repos/rksomayaji/orthoscore/releases/latest</string>
-    <string name="url_issues">Report: https://github.com/rksomayaji/orthoscore/issues/new/</string>
+    <string name="url_issues">https://github.com/rksomayaji/orthoscore/issues/new/</string>
 
     <string-array name="scale">
         <item>0 (Never)</item>
