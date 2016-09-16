@@ -5,6 +5,11 @@
     <string name="stiffness_label">Stiffness</string>
     <string name="difficulty_label">Difficulty in performing</string>
     <string name="result_default">Will show result here</string>
+    <string name="checkupdate_button">Check for Update</string>
+    <string name="about_menu_title">About</string>
+    <string name="settings_menu_title">Settings</string>
+    <string name="url_download">https://api.github.com/repos/rksomayaji/orthoscore/releases/latest</string>
+    <string name="url_issues">Report: https://github.com/rksomayaji/orthoscore/issues/new/</string>
 
     <string-array name="scale">
         <item>0 (Never)</item>
