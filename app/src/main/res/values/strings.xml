@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Orthopedic Scores</string>
+    <string name="pain_label">Pain</string>
+    <string name="submit_button">Submit</string>
+    <string name="stiffness_label">Stiffness</string>
+    <string name="difficulty_label">Difficulty in performing</string>
+    <string name="result_default">Will show result here</string>
+
+    <string-array name="scale">
+        <item>0 (Never)</item>
+        <item>1 (Rarely)</item>
+        <item>2 (Sometimes)</item>
+        <item>3 (Often)</item>
+        <item>4 (Always)</item>
+    </string-array>
+    <string-array name="pain_scale">
+        <item>0 (None)</item>
+        <item>1 (Mild)</item>
+        <item>2 (Moderate)</item>
+        <item>3 (Severe)</item>
+        <item>4 (Extreme)</item>
+    </string-array>
+
+
+</resources>
