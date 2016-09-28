@@ -1,16 +1,11 @@
 package com.rksomayaji.work.orthoscores;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
-
-import java.util.ArrayList;
 
 /**
  * Created by sushanth on 9/13/16.
@@ -41,7 +36,6 @@ public class WomacFragment extends android.support.v4.app.Fragment {
     Spinner difficultyShopping;
     Spinner difficultyHeavyDomestic;
     Spinner difficultyLightDomestic;
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,21 +79,15 @@ public class WomacFragment extends android.support.v4.app.Fragment {
                 difficultyStairsDown,difficultyStairsUp,
         };
 
-        try{
-            String test = getString(R.string.test_name);
-            String app = getString(R.string.app_name);
-            getActivity().getActionBar().setTitle(app + test);
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ResultFragment result = new ResultFragment();
                 Bundle args = new Bundle();
 
-                args.putInt("RESULT", calculateScore(scaleSpinners));
-                args.putString("TEST", "WOMAC");
+                args.putInt(OrthoScores.RESULT, calculateScore(scaleSpinners));
+                args.putString(OrthoScores.TEST, "WOMAC");
                 result.setArguments(args);
 
                 getFragmentManager().beginTransaction()
