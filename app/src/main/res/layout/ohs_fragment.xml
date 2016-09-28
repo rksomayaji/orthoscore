@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="34sp"
+            android:text="@string/test_name_ohs"
+            android:textAlignment="center" />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_pain_hip"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_pain" android:id="@+id/ohs_pain_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_diff_wash"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_diff_wash_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_diff_car"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_diff_car_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_diff_socks"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_diff_socks_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_diff_shopping"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_diff_shop_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_length_walk"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_time" android:id="@+id/ohs_length_walk_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_diff_stairs"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_diff_stairs_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_diff_gettingup"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_diff_getup_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_limp_walk"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_freq" android:id="@+id/ohs_limp_walk_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_severe_pain"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_day" android:id="@+id/ohs_sev_pain_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_pain_interfere"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_difficulty" android:id="@+id/ohs_pain_int_spinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ohs_pain_night"
+                    android:paddingTop="5dp" android:paddingStart="16dp" android:paddingEnd="16dp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="2dp" android:entries="@array/response_day" android:id="@+id/ohs_pain_night_spinner"/>
+            </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_button"
+            android:layout_gravity="center"
+            android:id="@+id/btnSubmit_OHS"/>
+    </LinearLayout>
+</ScrollView>

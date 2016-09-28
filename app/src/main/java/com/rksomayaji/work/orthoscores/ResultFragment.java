@@ -16,8 +16,8 @@ public class ResultFragment extends Fragment {
         // Inflate the layout for this fragment
 
         Bundle args = getArguments();
-        int score = args.getInt("RESULT");
-        String test = args.getString("TEST");
+        int score = args.getInt(OrthoScores.RESULT);
+        String test = args.getString(OrthoScores.TEST);
         String total = "0";
         View v = inflater.inflate(R.layout.result_layout, container, false);
         TextView textView = (TextView) v.findViewById(R.id.result_text);
@@ -25,6 +25,9 @@ public class ResultFragment extends Fragment {
         switch (test){
             case "WOMAC":
                 total = getString(R.string.womac_total);
+                break;
+            case "Oxford Hip Score":
+                total = getString(R.string.ohs_total);
                 break;
         }
         textView.setText(String.valueOf(score) + "/" + total);

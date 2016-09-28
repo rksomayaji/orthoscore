@@ -9,5 +9,6 @@
     android:id="@+id/result_text"
     android:textSize="34sp"
     android:textAlignment="center"
-    android:text="@string/result_default"/>
+    android:text="@string/result_default"
+    android:padding="50dp"/>
 </LinearLayout>
