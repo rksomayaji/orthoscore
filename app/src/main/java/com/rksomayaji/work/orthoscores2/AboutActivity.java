@@ -22,6 +22,7 @@ public class AboutActivity extends AppCompatActivity {
     TextView download;
     TextView updateDetails;
     static String url;
+    String versionCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class AboutActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        String versionCode = pInfo.versionName;
+        versionCode = pInfo.versionName;
         TextView versionCodeView = (TextView) findViewById(R.id.textview_version_code);
         versionCodeView.setText("Version: " + versionCode);
 
@@ -96,9 +97,11 @@ private class getUpdate extends AsyncTask<Void,Void,String[]>{
 
         if (pDialog.isShowing()) pDialog.dismiss();
 
-        update.setText("Latest release: " + s[0]);
-        download.setText(s[1]);
-        updateDetails.setText(s[2]);
+        if(!s[0].equals(versionCode)){
+            update.setText("Latest release: " + s[0]);
+            download.setText(s[1]);
+            updateDetails.setText(s[2]);
+        }else update.setText("No updates. You are on latest version.");
     }
 }
 }
