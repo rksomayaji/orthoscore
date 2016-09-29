@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores;
+package com.rksomayaji.work.orthoscores2;
 
 import org.junit.Test;
 

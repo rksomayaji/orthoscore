@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores;
+package com.rksomayaji.work.orthoscores2;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;

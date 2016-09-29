@@ -5,11 +5,11 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        applicationId "com.rksomayaji.work.orthoscores"
+        applicationId "com.rksomayaji.work.orthoscores2"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 3
-        versionName "0.3a"
+        versionCode 1
+        versionName "0.3.1a"
     }
     buildTypes {
         release {
