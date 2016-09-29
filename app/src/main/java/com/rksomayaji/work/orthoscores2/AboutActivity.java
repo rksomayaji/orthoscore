@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores;
+package com.rksomayaji.work.orthoscores2;
 
 import android.app.ProgressDialog;
 import android.content.pm.PackageInfo;
