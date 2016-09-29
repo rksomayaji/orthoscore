@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
         if(findViewById(R.id.fragment_container) != null){
             if (savedInstanceState != null) return;
 
-            WomacFragment womacFragment = new WomacFragment();
+            MainFragment mainFragment = new MainFragment();
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.fragment_container,womacFragment);
+            ft.add(R.id.fragment_container,mainFragment);
             ft.commit();
         }
     }
