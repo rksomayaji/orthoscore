@@ -28,4 +28,6 @@
     <string name="activity_domesticheavy">Heavy domestic duties</string>
     <string name="activity_domesticlight">Light domestic duties</string>
 
+    <string name="womac_details">Higher scores indicate worse pain, stiffness, and functional limitations.</string>
+
 </resources>
