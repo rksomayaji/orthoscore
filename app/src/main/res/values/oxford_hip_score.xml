@@ -16,39 +16,39 @@
     <string name="ohs_pain_interfere">How much has pain from your hip interfered with your usual work (including housework)?</string>
     <string name="ohs_pain_night">Have you been troubled by pain from your hip in bed at night?</string>
     <string-array name="response_pain">
-        <item>No</item>
-        <item>Very mild</item>
-        <item>Mild</item>
-        <item>Moderate</item>
         <item>Severe</item>
+        <item>Moderate</item>
+        <item>Mild</item>
+        <item>Very mild</item>
+        <item>No</item>
     </string-array>
     <string-array name="response_difficulty">
-        <item>No</item>
-        <item>Very little</item>
-        <item>Moderate</item>
-        <item>Extreme</item>
         <item>Impossible</item>
+        <item>Extreme</item>
+        <item>Moderate</item>
+        <item>Very little</item>
+        <item>No</item>
     </string-array>
     <string-array name="response_time">
-        <item>>30 mins</item>
-        <item>16–30 mins</item>
-        <item>5–15 mins</item>
-        <item>Around House</item>
         <item>Impossible</item>
+        <item>Around House</item>
+        <item>5–15 mins</item>
+        <item>16–30 mins</item>
+        <item>>30 mins</item>
     </string-array>
     <string-array name="response_freq">
-        <item>Never</item>
-        <item>Sometimes</item>
-        <item>Often</item>
-        <item>Most of the time</item>
         <item>All of the time</item>
+        <item>Most of the time</item>
+        <item>Often</item>
+        <item>Sometimes</item>
+        <item>Never</item>
     </string-array>
     <string-array name="response_day">
-        <item>Never</item>
-        <item>1–2</item>
-        <item>Some</item>
-        <item>Most</item>
         <item>Every</item>
+        <item>Most</item>
+        <item>Some</item>
+        <item>1–2</item>
+        <item>Never</item>
     </string-array>
     <integer-array name="responses">
         <item>0</item>
@@ -64,4 +64,6 @@
         <item>1</item>
         <item>4</item>
     </integer-array>
+
+    <string name="ohs_details">Lower scores indicate worse pain, stiffness, and functional limitations.</string>
 </resources>
