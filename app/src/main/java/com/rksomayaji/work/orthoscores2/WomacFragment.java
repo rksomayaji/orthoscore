@@ -1,11 +1,14 @@
 package com.rksomayaji.work.orthoscores2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by sushanth on 9/13/16.
@@ -80,6 +83,17 @@ public class WomacFragment extends android.support.v4.app.Fragment {
         };
 
 
+        TextView patientsName = (TextView) v.findViewById(R.id.patients_name);
+        final EditText patientName = (EditText) v.findViewById(R.id.edit_name);
+        final EditText patientAge = (EditText) v.findViewById(R.id.edit_age);
+        patientsName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                patientName.setVisibility(View.VISIBLE);
+                patientAge.setVisibility(View.VISIBLE);
+                Log.i("WOMAC","Name clicked.");
+            }
+        });
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
