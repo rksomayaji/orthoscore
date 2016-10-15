@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthoscores2.helper;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

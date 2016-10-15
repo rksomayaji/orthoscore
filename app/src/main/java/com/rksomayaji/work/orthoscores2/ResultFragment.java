@@ -33,6 +33,11 @@ public class ResultFragment extends Fragment {
                 detailedResult.setText(getText(R.string.ohs_details));
                 Log.i("Result","OHS");
                 break;
+            case "Test":
+                total = "0";
+                detailedResult.setText("Hello...");
+                Log.i("Result","Test");
+                break;
         }
         textView.setText(String.valueOf(score) + "/" + total);
         return v;

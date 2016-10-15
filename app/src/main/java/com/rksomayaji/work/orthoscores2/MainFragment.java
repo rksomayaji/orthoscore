@@ -46,6 +46,16 @@ public class MainFragment extends Fragment {
                                 .replace(R.id.fragment_container,ohsFragment)
                                 .commit();
                         break;
+                    case 2:
+                        TestFragment t1 = new TestFragment();
+                        Bundle args = new Bundle();
+                        args.putInt(OrthoScores.TEST_NUMBER,i);
+
+                        t1.setArguments(args);
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container,t1)
+                                .commit();
+                        break;
                 }
             }
         });

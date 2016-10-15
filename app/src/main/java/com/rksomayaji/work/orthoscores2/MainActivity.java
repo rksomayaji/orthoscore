@@ -51,9 +51,18 @@ public class MainActivity extends AppCompatActivity {
                                 .commit();
                         mainMenu.closeDrawer(GravityCompat.START);
                         break;
+                    case 2:
+                        TestFragment t1 = new TestFragment();
+                        Bundle args = new Bundle();
+                        args.putInt(OrthoScores.TEST_NUMBER,i);
+
+                        t1.setArguments(args);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container,t1)
+                                .commit();
+                        mainMenu.closeDrawer(GravityCompat.START);
+                        break;
                 }
-
-
             }
         });
         if(findViewById(R.id.fragment_container) != null){
