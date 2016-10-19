@@ -1,11 +1,18 @@
 package com.rksomayaji.work.orthoscores2;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +20,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                         mainMenu.closeDrawer(GravityCompat.START);
                         break;
                 }
-
-
             }
         });
         if(findViewById(R.id.fragment_container) != null){
@@ -65,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
             ft.add(R.id.fragment_container,mainFragment);
             ft.commit();
         }
+        checkForUpdate();
+    }
+
+    private void checkForUpdate() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        if(settings.getBoolean("auto_update",true)) {
+            Log.i("Main","It is true");
+            new getUpdate().execute();
+        }
+        else Log.i("Main","Whatevs...");
     }
 
     @Override
@@ -80,12 +99,79 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.menu_about:
                 Intent aboutIntent = new Intent(this,AboutActivity.class);
+                aboutIntent.putExtra(OrthoScores.NOTIFICATION,false);
                 startActivity(aboutIntent);
                 return true;
             case R.id.menu_settings:
+                Intent settingsIntent = new Intent(this,SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+    private class getUpdate extends AsyncTask<Void,Void,String[]> {
+
+        String url = getString(R.string.url_download);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.i("OrthoScores2","Checking for update");
+        }
+
+        @Override
+        protected String[] doInBackground(Void... voids) {
+            HTTPHelper sh = new HTTPHelper();
+
+            String jsonString = sh.makeServiceCall(url);
+            String tagName[] = new String[3];
+
+            if(jsonString != null){
+                try{
+                    JSONObject jsonObject = new JSONObject(jsonString);
+
+                    Log.i("Main",jsonObject.getString("tag_name"));
+                    tagName[0] = jsonObject.getString("tag_name");
+                    tagName[2] = jsonObject.getString("body");
+                    JSONArray assets = jsonObject.getJSONArray("assets");
+                    JSONObject c = assets.getJSONObject(0);
+                    tagName[1] = c.getString("browser_download_url");
+
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+            return tagName;
+        }
+
+        @Override
+        protected void onPostExecute(String[] s) {
+            super.onPostExecute(s);
+            try{
+                String versionInstalled = getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+
+                if(!s[0].equals(versionInstalled)) {
+                    Intent updateIntent = new Intent(getApplicationContext(),AboutActivity.class);
+                    updateIntent.putExtra(OrthoScores.NOTIFICATION,true);
+                    PendingIntent updatePI =  PendingIntent.getActivity(getApplicationContext(),0,updateIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    NotificationCompat.Builder updateNotification = new NotificationCompat.Builder(getApplicationContext());
+                    updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                            .setContentTitle("Update Available")
+                            .setContentText(s[0])
+                            .setContentIntent(updatePI)
+                            .setAutoCancel(true);
+
+                    NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+                    noti.notify(1,updateNotification.build());
+
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
     }
 }

@@ -8,4 +8,6 @@ import android.app.Application;
 public class OrthoScores extends Application {
     public static final String RESULT = "RESULT";
     public static final String TEST = "TEST";
+
+    public static final String NOTIFICATION = "NOTIFY";
 }
