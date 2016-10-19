@@ -37,4 +37,8 @@
 
     <string name="update_check_summary">Check for update on the first run and notify</string>
     <string name="update_check">Automatically check for new update</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="copy_text">Copy Result</string>
 </resources>
