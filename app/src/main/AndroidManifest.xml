@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rksomayaji.work.orthoscores2">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,14 +10,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.rksomayaji.work.orthoscores2.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.rksomayaji.work.orthoscores2.AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".SettingsActivity" />
+        <receiver android:exported="false" android:name=".helper.DownloadBroadcastReceiverHelper">
+            <intent-filter>
+                <action android:name="com.rksomayaji.work.orthoscores2.DOWNLOAD_UPDATE"/>
+                <action android:name="com.rksomayaji.work.orthoscores2.IGNORE_UPDATE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
