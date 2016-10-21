@@ -79,11 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkForUpdate() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        if(settings.getBoolean("auto_update",true)) {
-            Log.i("Main","It is true");
-            new getUpdate().execute();
-        }
-        else Log.i("Main","Whatevs...");
+        if(settings.getBoolean("auto_update",true)) new getUpdate().execute();
     }
 
     @Override
@@ -125,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             HTTPHelper sh = new HTTPHelper();
 
             String jsonString = sh.makeServiceCall(url);
-            String tagName[] = new String[3];
+            String[] tagName = new String[2];
 
             if(jsonString != null){
                 try{
@@ -133,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.i("Main",jsonObject.getString("tag_name"));
                     tagName[0] = jsonObject.getString("tag_name");
-                    tagName[2] = jsonObject.getString("body");
                     JSONArray assets = jsonObject.getJSONArray("assets");
                     JSONObject c = assets.getJSONObject(0);
                     tagName[1] = c.getString("browser_download_url");
@@ -154,24 +149,28 @@ public class MainActivity extends AppCompatActivity {
                 if(!s[0].equals(versionInstalled)) {
                     Intent updateIntent = new Intent(getApplicationContext(),AboutActivity.class);
                     updateIntent.putExtra(OrthoScores.NOTIFICATION,true);
-                    PendingIntent updatePI =  PendingIntent.getActivity(getApplicationContext(),0,updateIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    PendingIntent updatePI =  PendingIntent.getActivity(getApplicationContext(),
+                            0,
+                            updateIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    /* TODO: Add action to download and install update */
 
                     NotificationCompat.Builder updateNotification = new NotificationCompat.Builder(getApplicationContext());
                     updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
                             .setContentTitle("Update Available")
-                            .setContentText(s[0])
+                            .setContentText("Version: " + s[0])
                             .setContentIntent(updatePI)
                             .setAutoCancel(true);
 
-                    NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-                    noti.notify(1,updateNotification.build());
-
+                    notifManager.notify(1,updateNotification.build());
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
     }
 }
