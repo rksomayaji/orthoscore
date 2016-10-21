@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     private class getUpdate extends AsyncTask<Void,Void,String[]> {
 
         String url = getString(R.string.url_download);
+        int notificationID = 1;
 
         @Override
         protected void onPreExecute() {
@@ -145,8 +146,11 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             try{
                 String versionInstalled = getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String ignoreTag = sp.getString(OrthoScores.IGNORE_TAG,null);
+                Log.i("Main", "Ignoring " + ignoreTag);
 
-                if(!s[0].equals(versionInstalled)) {
+                if(!s[0].equals(versionInstalled) && !s[0].equals(ignoreTag)) {
                     Intent updateIntent = new Intent(getApplicationContext(),AboutActivity.class);
                     updateIntent.putExtra(OrthoScores.NOTIFICATION,true);
 
@@ -155,18 +159,38 @@ public class MainActivity extends AppCompatActivity {
                             updateIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
 
-                    /* TODO: Add action to download and install update */
+                    Intent downloadIntent = new Intent();
+                    downloadIntent.setAction(OrthoScores.DOWNLOAD_UPDATE);
+                    downloadIntent.putExtra(OrthoScores.TAG_OR_URL,s[1]);
+                    downloadIntent.putExtra(OrthoScores.NOTIFICATION_ID,notificationID);
+
+                    PendingIntent downloadPI = PendingIntent.getBroadcast(getApplicationContext(),
+                            1,
+                            downloadIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    Intent ignoreIntent = new Intent();
+                    ignoreIntent.setAction(OrthoScores.IGNORE_UPDATE);
+                    ignoreIntent.putExtra(OrthoScores.TAG_OR_URL,s[0]);
+                    ignoreIntent.putExtra(OrthoScores.NOTIFICATION_ID,notificationID);
+
+                    PendingIntent ignorePI = PendingIntent.getBroadcast(getApplicationContext(),
+                            2,
+                            ignoreIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
 
                     NotificationCompat.Builder updateNotification = new NotificationCompat.Builder(getApplicationContext());
                     updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
                             .setContentTitle("Update Available")
                             .setContentText("Version: " + s[0])
                             .setContentIntent(updatePI)
+                            .addAction(0,"DOWNLOAD",downloadPI)
+                            .addAction(0,"IGNORE",ignorePI)
                             .setAutoCancel(true);
 
                     NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-                    notifManager.notify(1,updateNotification.build());
+                    notifManager.notify(notificationID,updateNotification.build());
                 }
             }catch (Exception e){
                 e.printStackTrace();

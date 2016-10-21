@@ -19,6 +19,12 @@
         </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
+        <receiver android:exported="false" android:name=".helper.DownloadBroadcastReceiverHelper">
+            <intent-filter>
+                <action android:name="com.rksomayaji.work.orthoscores2.DOWNLOAD_UPDATE"/>
+                <action android:name="com.rksomayaji.work.orthoscores2.IGNORE_UPDATE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
