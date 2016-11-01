@@ -14,6 +14,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mainMenu;
@@ -27,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
         mainMenu = (DrawerLayout) findViewById(R.id.drawer);
 
-        String[] testArray = getResources().getStringArray(R.array.tests);
+        ArrayList<String> testArray = getAvailableTests();
         menuAdapter = new ArrayAdapter<>(this, R.layout.list_layout,testArray);
         menuList = (ListView) findViewById(R.id.test_list);
         menuList.setAdapter(menuAdapter);
 
-        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
-        });
+        });*/
         if(findViewById(R.id.fragment_container) != null){
             if (savedInstanceState != null) return;
 
@@ -74,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
             ft.add(R.id.fragment_container,mainFragment);
             ft.commit();
         }
+    }
+
+    private ArrayList<String> getAvailableTests() {
+        TestXMLParserHelper helper = new TestXMLParserHelper(this);
+        ArrayList<String> tests = helper.getTestList();
+
+        return tests;
     }
 
     @Override

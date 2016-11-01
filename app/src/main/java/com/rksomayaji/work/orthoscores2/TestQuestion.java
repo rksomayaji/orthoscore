@@ -42,8 +42,8 @@ public class TestQuestion {
         this.value = value;
     }
 
-    int getSelectedValue(){
-        return selectedValue;
+    public int getSelectedValue(){
+        return value[selectedValue];
     }
 
     public void setSelectedValue(int selectedValue) {

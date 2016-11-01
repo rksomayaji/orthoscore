@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<test>
+    <name>Test</name>
+
+    <response>
+        <default>
+            <value>0</value>
+            <value>1</value>
+            <value>2</value>
+            <value>3</value>
+        </default>
+
+        <pain>
+            <item>never</item>
+            <item>sometimes</item>
+            <item>often</item>
+            <item>always</item>
+        </pain>
+
+        <difficulty>
+            <item value="0">never</item>
+            <item value="1">sometimes</item>
+            <item value="2">often</item>
+            <item value="3">always</item>
+        </difficulty>
+    </response>
+
+    <questions>
+        <item>
+            <text>Question 1</text>
+            <resp value="1"/>
+        </item>
+        <item>
+            <text>Question 2</text>
+            <resp value="0"/>
+        </item>
+    </questions>
+
+    <total value="6">
+        <details>This is a test</details>
+    </total>
+</test>
