@@ -63,6 +63,20 @@ public class MainFragment extends Fragment {
                 }
             }
         });*/
+
+        testList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TestFragment fragment = new TestFragment();
+                Bundle args = new Bundle();
+                args.putInt(OrthoScores.TEST_NUMBER,i);
+                fragment.setArguments(args);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container,fragment)
+                        .commit();
+            }
+        });
         return v;
     }
 

@@ -3,37 +3,31 @@
     <name>Test</name>
 
     <response>
-        <default>
+        <!--<response-value>
             <value>0</value>
             <value>1</value>
             <value>2</value>
             <value>3</value>
-        </default>
+        </response-value> -->
 
-        <pain>
-            <item>never</item>
-            <item>sometimes</item>
-            <item>often</item>
-            <item>always</item>
-        </pain>
-
-        <difficulty>
+        <response-array type="pain">
             <item value="0">never</item>
             <item value="1">sometimes</item>
             <item value="2">often</item>
             <item value="3">always</item>
-        </difficulty>
+        </response-array>
+
+        <response-array type="difficulty">
+            <item value="0">never</item>
+            <item value="1">sometimes</item>
+            <item value="2">often</item>
+            <item value="3">always</item>
+        </response-array>
     </response>
 
     <questions>
-        <item>
-            <text>Question 1</text>
-            <resp value="1"/>
-        </item>
-        <item>
-            <text>Question 2</text>
-            <resp value="0"/>
-        </item>
+        <text response="1">Question 1</text>
+        <text response="0">Question 2</text>
     </questions>
 
     <total value="6">

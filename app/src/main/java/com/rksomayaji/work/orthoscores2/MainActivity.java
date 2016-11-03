@@ -69,6 +69,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });*/
+        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TestFragment fragment = new TestFragment();
+                Bundle args = new Bundle();
+                args.putInt(OrthoScores.TEST_NUMBER,i);
+                fragment.setArguments(args);
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container,fragment)
+                        .commit();
+                mainMenu.closeDrawer(GravityCompat.START);
+            }
+        });
         if(findViewById(R.id.fragment_container) != null){
             if (savedInstanceState != null) return;
 

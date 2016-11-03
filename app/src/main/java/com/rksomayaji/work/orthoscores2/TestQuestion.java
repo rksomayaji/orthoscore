@@ -1,24 +1,26 @@
 package com.rksomayaji.work.orthoscores2;
 
+import java.util.List;
+
 /**
  * Created by sushanth on 10/15/16.
  */
 
 public class TestQuestion {
     private String question;
-    private String[] response;
-    private int[] value;
+    private List<String> response;
+    private List<Integer> value;
     private int selectedValue;
 
     public TestQuestion (){}
 
-    TestQuestion(String q, String[] r, int[] v){
+    public TestQuestion(String q, List<String> r, List<Integer> v){
         question = q;
         response = r;
         value = v;
     }
 
-    public int[] getValue() {
+    public List<Integer> getValue() {
         return value;
     }
 
@@ -26,7 +28,7 @@ public class TestQuestion {
         return question;
     }
 
-    public String[] getResponse() {
+    public List<String> getResponse() {
         return response;
     }
 
@@ -34,19 +36,19 @@ public class TestQuestion {
         this.question = question;
     }
 
-    public void setResponse(String[] response) {
+    public void setResponse(List<String> response) {
         this.response = response;
     }
 
-    public void setValue(int[] value) {
+    public void setValue(List<Integer> value) {
         this.value = value;
     }
 
     public int getSelectedValue(){
-        return value[selectedValue];
+        return selectedValue;
     }
 
     public void setSelectedValue(int selectedValue) {
-        this.selectedValue = value[selectedValue];
+        this.selectedValue = value.get(selectedValue);
     }
 }

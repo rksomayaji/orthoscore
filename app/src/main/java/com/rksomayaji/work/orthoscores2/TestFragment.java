@@ -12,7 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.rksomayaji.work.orthoscores2.adapter.TestArrayAdapter;
+import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +22,8 @@ import java.util.ArrayList;
  */
 
 public class TestFragment extends Fragment {
+
+    ArrayList<TestQuestion> questions;
 
     public TestFragment () {
 
@@ -36,12 +40,19 @@ public class TestFragment extends Fragment {
 
         Bundle args = getArguments();
         final int i = args.getInt(OrthoScores.TEST_NUMBER);
-        final String[] tests = getContext().getResources().getStringArray(R.array.tests);
+
+        TestXMLParserHelper helper = new TestXMLParserHelper(getContext());
+        final ArrayList<String> tests = helper.getTestList();
 
         testName.setAllCaps(true);
-        testName.setText(tests[i]);
+        testName.setText(tests.get(i));
 
-        final ArrayList<TestQuestion> questions = getTestQuestions(OrthoScores.TESTS[i]);
+        questions = new ArrayList<>();
+        try {
+            questions = getTestQuestions(i);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         TestArrayAdapter testAdapter = new TestArrayAdapter(getContext(),R.layout.test_layout, questions);
         testsList.setAdapter(testAdapter);
 
@@ -51,7 +62,7 @@ public class TestFragment extends Fragment {
                 int scores = getTestScore(questions);
 
                 Bundle args = new Bundle();
-                args.putString(OrthoScores.TEST,tests[i]);
+                args.putString(OrthoScores.TEST,tests.get(i));
                 args.putInt(OrthoScores.RESULT,scores);
 
                 ResultFragment result = new ResultFragment();
@@ -76,16 +87,8 @@ public class TestFragment extends Fragment {
         return s;
     }
 
-    private ArrayList<TestQuestion> getTestQuestions(int[] test) {
-        ArrayList<TestQuestion> qs = new ArrayList<>();
-
-        String[] questions = getResources().getStringArray(test[0]);
-        for (String q : questions){
-            qs.add(new TestQuestion(q,
-                    getResources().getStringArray(test[1]),
-                    getResources().getIntArray(test[2])));
-        }
-
-        return qs;
+    private ArrayList<TestQuestion> getTestQuestions(int test) throws IOException {
+        TestXMLParserHelper helper = new TestXMLParserHelper(getContext());
+        return helper.getTest(test);
     }
 }

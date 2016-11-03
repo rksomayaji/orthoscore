@@ -9,7 +9,6 @@ import com.rksomayaji.work.orthoscores2.TestQuestion;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,15 +20,15 @@ import java.util.List;
 
 public class TestXMLParserHelper {
 
-    TestQuestion question;
-    String[] response;
-    int[] values;
-    ArrayList<String[]> responses;
+    private ArrayList<List<Integer>> values;
+    private ArrayList<List<String>> responses;
     private Context context;
     private static final String ns = null;
 
     public TestXMLParserHelper(Context applicationContext){
         context = applicationContext;
+        values = new ArrayList<>();
+        responses = new ArrayList<>();
     }
 
     public ArrayList<String> getTestList(){
@@ -45,7 +44,6 @@ public class TestXMLParserHelper {
             e.printStackTrace();
         }
 
-        Log.i("XML Parser", "Available tests " + String.valueOf(testList.size()));
         return testList;
     }
 
@@ -79,12 +77,120 @@ public class TestXMLParserHelper {
         return name;
     }
 
+    public ArrayList<TestQuestion> getTest(int pos) throws IOException {
+        ArrayList<TestQuestion> test = new ArrayList<>();
+        ArrayList<InputStream> tests = getAssetFiles();
+
+        XmlPullParser parser = Xml.newPullParser();
+        try{
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(tests.get(pos),null);
+            parser.nextTag();
+            Log.i("XML Parser", parser.getName());
+
+            while (parser.next() != XmlPullParser.END_TAG){
+                if(parser.getEventType() != XmlPullParser.START_TAG) continue;
+
+                String tag = parser.getName();
+                Log.i("XML Parser", tag);
+
+                switch (tag){
+                    case "response":
+                        getResponses(parser);
+                        break;
+                    case "questions":
+                        test = getQuestion(parser);
+                        break;
+                    default:
+                        skip(parser);
+                }
+            }
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return test;
+    }
+
+    private ArrayList<TestQuestion> getQuestion(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG,ns,"questions");
+        ArrayList<TestQuestion> questions = new ArrayList<>();
+
+        while(parser.next() != XmlPullParser.END_TAG){
+            if (parser.getEventType() != XmlPullParser.START_TAG) continue;
+
+            String tag = parser.getName();
+
+            if(tag.equals("text")){
+                int response = Integer.parseInt(parser.getAttributeValue(null,"response"));
+                Log.i("XML Parser", String.valueOf(response));
+                TestQuestion q = new TestQuestion();
+                q.setQuestion(readText(parser));
+                Log.i("XML Parser", q.getQuestion());
+                q.setResponse(responses.get(response));
+                q.setValue(values.get(response));
+                questions.add(q);
+            }
+        }
+        return questions;
+    }
+
+    private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
+        String result = "";
+        if (parser.next() == XmlPullParser.TEXT) {
+            result = parser.getText();
+            parser.nextTag();
+        }
+        return result;
+    }
+
+    private void getResponses(XmlPullParser parser) throws IOException , XmlPullParserException{
+        parser.require(XmlPullParser.START_TAG,ns,"response");
+        while (parser.next() != XmlPullParser.END_TAG){
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+
+            if(name.equals("response-array")){
+                responses.add(getArray(parser));
+                //parser.nextTag();
+            }
+        }
+    }
+
+    private List<String> getArray(XmlPullParser parser) throws IOException, XmlPullParserException {
+        List<String> array = new ArrayList<>();
+        List<Integer> valueArray = new ArrayList<>();
+
+        parser.require(XmlPullParser.START_TAG,ns,"response-array");
+        //parser.nextTag();
+        while(parser.next() != XmlPullParser.END_TAG){
+            if(parser.getEventType() != XmlPullParser.START_TAG) continue;
+
+            String tag = parser.getName();
+            if(tag.equals("item")){
+                Integer value = Integer.parseInt(parser.getAttributeValue(null,"value"));
+                Log.i("XML Parser", String.valueOf(value));
+                valueArray.add(value);
+                if (parser.next() == XmlPullParser.TEXT) {
+                    array.add(parser.getText());
+                    Log.i("XML Parser",parser.getText());
+                    parser.nextTag();
+                }
+                //parser.nextTag();
+            }
+        }
+        values.add(valueArray);
+
+        return array;
+    }
+
     private ArrayList<InputStream> getAssetFiles(){
         ArrayList<InputStream> testAssets = new ArrayList<>();
         try {
             String[] fileList = context.getApplicationContext().getAssets().list("test");
             for (String path : fileList){
-                Log.i("XML Parser","Test " + path);
                 testAssets.add(context.getApplicationContext().getAssets().open("test/" + path));
             }
         } catch (IOException e) {
