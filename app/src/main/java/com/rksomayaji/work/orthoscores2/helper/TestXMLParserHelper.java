@@ -154,7 +154,6 @@ public class TestXMLParserHelper {
 
             if(name.equals("response-array")){
                 responses.add(getArray(parser));
-                //parser.nextTag();
             }
         }
     }
@@ -164,7 +163,7 @@ public class TestXMLParserHelper {
         List<Integer> valueArray = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG,ns,"response-array");
-        //parser.nextTag();
+
         while(parser.next() != XmlPullParser.END_TAG){
             if(parser.getEventType() != XmlPullParser.START_TAG) continue;
 
@@ -178,12 +177,47 @@ public class TestXMLParserHelper {
                     Log.i("XML Parser",parser.getText());
                     parser.nextTag();
                 }
-                //parser.nextTag();
             }
         }
         values.add(valueArray);
 
         return array;
+    }
+
+    public ArrayList<String> getTotal(int pos) throws XmlPullParserException, IOException {
+        ArrayList<String> result = new ArrayList<>();
+        ArrayList<InputStream> tests = getAssetFiles();
+
+        XmlPullParser parser = Xml.newPullParser();
+        parser.setInput(tests.get(pos),null);
+        parser.nextTag();
+
+        while(parser.next() != XmlPullParser.END_TAG){
+            if(parser.getEventType() != XmlPullParser.START_TAG) continue;
+
+            String tag = parser.getName();
+
+            if(tag.equals("total")){
+                parser.require(XmlPullParser.START_TAG,ns,"total");
+                String total = parser.getAttributeValue(null,"value");
+                Log.i("XML Parser total", total);
+                result.add(total);
+                parser.nextTag();
+
+                String name = parser.getName();
+                if(name.equals("details")){
+                    parser.require(XmlPullParser.START_TAG,ns,"details");
+                    result.add(readText(parser));
+                    Log.i("XML Parser total",result.get(1));
+                    parser.require(XmlPullParser.END_TAG,ns,"details");
+                }
+
+                parser.nextTag();
+                parser.require(XmlPullParser.END_TAG,ns,"total");
+            }else skip(parser);
+        }
+
+        return result;
     }
 
     private ArrayList<InputStream> getAssetFiles(){

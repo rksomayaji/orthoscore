@@ -62,7 +62,7 @@ public class TestFragment extends Fragment {
                 int scores = getTestScore(questions);
 
                 Bundle args = new Bundle();
-                args.putString(OrthoScores.TEST,tests.get(i));
+                args.putInt(OrthoScores.TEST_NUMBER,i);
                 args.putInt(OrthoScores.RESULT,scores);
 
                 ResultFragment result = new ResultFragment();

@@ -11,10 +11,10 @@
         </response-value> -->
 
         <response-array type="pain">
-            <item value="0">never</item>
-            <item value="1">sometimes</item>
-            <item value="2">often</item>
-            <item value="3">always</item>
+            <item value="0">never pains</item>
+            <item value="1">sometimes pains</item>
+            <item value="2">often pains</item>
+            <item value="3">always pains</item>
         </response-array>
 
         <response-array type="difficulty">

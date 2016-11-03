@@ -5,12 +5,18 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by sushanth on 9/15/16.
@@ -20,31 +26,23 @@ public class ResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         Bundle args = getArguments();
         final int score = args.getInt(OrthoScores.RESULT);
-        String test = args.getString(OrthoScores.TEST);
-        String total = "0";
+        int test = args.getInt(OrthoScores.TEST_NUMBER);
         View v = inflater.inflate(R.layout.result_layout, container, false);
         TextView textView = (TextView) v.findViewById(R.id.result_text);
         TextView detailedResult = (TextView) v.findViewById(R.id.detailed_result);
         ImageButton copyResult = (ImageButton) v.findViewById(R.id.copy_button);
 
-        switch (test){
-            case "WOMAC":
-                total = getString(R.string.womac_total);
-                detailedResult.setText(getText(R.string.womac_details));
-                Log.i("Result","WOMAC");
-                break;
-            case "Oxford Hip Score":
-                total = getString(R.string.ohs_total);
-                detailedResult.setText(getText(R.string.ohs_details));
-                Log.i("Result","OHS");
-                break;
-            case "Test":
-                total = "0";
-                detailedResult.setText("Hello...");
-                Log.i("Result","Test");
-                break;
+        TestXMLParserHelper helper = new TestXMLParserHelper(getContext());
+        ArrayList<String> totals = new ArrayList<>();
+        try {
+            totals = helper.getTotal(test);
+
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
         }
+        String total = totals.get(0);
         textView.setText(String.valueOf(score) + "/" + total);
+        detailedResult.setText(totals.get(1));
 
         textView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
