@@ -36,39 +36,6 @@ public class MainActivity extends AppCompatActivity {
         menuList = (ListView) findViewById(R.id.test_list);
         menuList.setAdapter(menuAdapter);
 
-        /*menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0:
-                        WomacFragment womacFragment = new WomacFragment();
-
-                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.fragment_container,womacFragment);
-                        ft.commit();
-                        mainMenu.closeDrawer(GravityCompat.START);
-                        break;
-                    case 1:
-                        OHSFragment ohsFragment = new OHSFragment();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container,ohsFragment)
-                                .commit();
-                        mainMenu.closeDrawer(GravityCompat.START);
-                        break;
-                    case 2:
-                        TestFragment t1 = new TestFragment();
-                        Bundle args = new Bundle();
-                        args.putInt(OrthoScores.TEST_NUMBER,i);
-
-                        t1.setArguments(args);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container,t1)
-                                .commit();
-                        mainMenu.closeDrawer(GravityCompat.START);
-                        break;
-                }
-            }
-        });*/
         menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -96,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> getAvailableTests() {
         TestXMLParserHelper helper = new TestXMLParserHelper(this);
-        ArrayList<String> tests = helper.getTestList();
 
-        return tests;
+        return helper.getTestList();
     }
 
     @Override

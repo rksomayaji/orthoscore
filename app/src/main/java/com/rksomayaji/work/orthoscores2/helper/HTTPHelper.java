@@ -12,6 +12,10 @@ import java.net.URL;
 
 /**
  * Created by sushanth on 9/17/16.
+ *
+ * HTTPHelper.java
+ * ----------------
+ *
  */
 public class HTTPHelper {
 
@@ -26,9 +30,7 @@ public class HTTPHelper {
             // read the response
             InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
+        } catch (MalformedURLException | ProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

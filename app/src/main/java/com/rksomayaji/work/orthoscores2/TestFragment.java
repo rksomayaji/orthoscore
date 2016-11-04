@@ -3,7 +3,6 @@ package com.rksomayaji.work.orthoscores2;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,13 @@ import java.util.ArrayList;
 
 /**
  * Created by sushanth on 10/12/16.
+ *
+ * TestFragment.java
+ * ------------------
+ * Displays the test. Gets the test from parsing the various test described in various xml files in
+ * tests folder in assets.
+ * Example of test and its description is given in example folder in assets.
+ *
  */
 
 public class TestFragment extends Fragment {
@@ -82,7 +88,6 @@ public class TestFragment extends Fragment {
 
         for (TestQuestion q : questions) {
             s += q.getSelectedValue();
-            Log.i("TEST", String.valueOf(s));
         }
         return s;
     }

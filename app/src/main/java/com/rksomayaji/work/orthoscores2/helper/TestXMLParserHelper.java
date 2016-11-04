@@ -16,6 +16,12 @@ import java.util.List;
 
 /**
  * Created by sushanth on 10/15/16.
+ *
+ * TestXMLParserHelper.java
+ * -------------------------
+ * Parser test from the various xml file present in the assets/tests folder for various fragments
+ * displaying list of available test, test itself and the result.
+ *
  */
 
 public class TestXMLParserHelper {
@@ -86,13 +92,11 @@ public class TestXMLParserHelper {
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(tests.get(pos),null);
             parser.nextTag();
-            Log.i("XML Parser", parser.getName());
 
             while (parser.next() != XmlPullParser.END_TAG){
                 if(parser.getEventType() != XmlPullParser.START_TAG) continue;
 
                 String tag = parser.getName();
-                Log.i("XML Parser", tag);
 
                 switch (tag){
                     case "response":
@@ -123,10 +127,8 @@ public class TestXMLParserHelper {
 
             if(tag.equals("text")){
                 int response = Integer.parseInt(parser.getAttributeValue(null,"response"));
-                Log.i("XML Parser", String.valueOf(response));
                 TestQuestion q = new TestQuestion();
                 q.setQuestion(readText(parser));
-                Log.i("XML Parser", q.getQuestion());
                 q.setResponse(responses.get(response));
                 q.setValue(values.get(response));
                 questions.add(q);
@@ -170,11 +172,9 @@ public class TestXMLParserHelper {
             String tag = parser.getName();
             if(tag.equals("item")){
                 Integer value = Integer.parseInt(parser.getAttributeValue(null,"value"));
-                Log.i("XML Parser", String.valueOf(value));
                 valueArray.add(value);
                 if (parser.next() == XmlPullParser.TEXT) {
                     array.add(parser.getText());
-                    Log.i("XML Parser",parser.getText());
                     parser.nextTag();
                 }
             }
@@ -200,7 +200,6 @@ public class TestXMLParserHelper {
             if(tag.equals("total")){
                 parser.require(XmlPullParser.START_TAG,ns,"total");
                 String total = parser.getAttributeValue(null,"value");
-                Log.i("XML Parser total", total);
                 result.add(total);
                 parser.nextTag();
 
@@ -208,7 +207,6 @@ public class TestXMLParserHelper {
                 if(name.equals("details")){
                     parser.require(XmlPullParser.START_TAG,ns,"details");
                     result.add(readText(parser));
-                    Log.i("XML Parser total",result.get(1));
                     parser.require(XmlPullParser.END_TAG,ns,"details");
                 }
 

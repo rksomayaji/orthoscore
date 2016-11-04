@@ -20,7 +20,14 @@ import java.util.ArrayList;
 
 /**
  * Created by sushanth on 9/15/16.
+ *
+ * ResultFragment.java
+ * --------------------
+ * Displays result calculated in the respective test in the TestFragment.java. Details of the test
+ * result is displayed after retrieving from the respective test xml file in the asset/tests folder.
+ *
  */
+
 public class ResultFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
