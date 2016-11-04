@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<test>
+    <name>Test</name>
+
+    <response>
+        <!--<response-value>
+            <value>0</value>
+            <value>1</value>
+            <value>2</value>
+            <value>3</value>
+        </response-value> -->
+
+        <response-array type="pain">
+            <item value="0">never pains</item>
+            <item value="1">sometimes pains</item>
+            <item value="2">often pains</item>
+            <item value="3">always pains</item>
+        </response-array>
+
+        <response-array type="difficulty">
+            <item value="0">never</item>
+            <item value="1">sometimes</item>
+            <item value="2">often</item>
+            <item value="3">always</item>
+        </response-array>
+    </response>
+
+    <questions>
+        <text response="1">Question 1</text>
+        <text response="0">Question 2</text>
+    </questions>
+
+    <total value="6">
+        <details>This is a test</details>
+    </total>
+</test>

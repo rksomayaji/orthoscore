@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<test>
+    <name>WOMAC</name>
+
+    <response>
+
+        <response-array type="pain">
+            <item value="0">(0) None</item>
+            <item value="1">(1) Mild</item>
+            <item value="2">(2) Moderate</item>
+            <item value="3">(3) Severe</item>
+            <item value="4">(4) Extreme</item>
+        </response-array>
+
+        <response-array type="difficulty">
+            <item value="0">(0) Never</item>
+            <item value="1">(1) Rarely</item>
+            <item value="2">(2) Sometimes</item>
+            <item value="3">(3) Often</item>
+            <item value="4">(4) Always</item>
+        </response-array>
+    </response>
+
+    <questions>
+        <text response="0">Pain while Walking</text>
+        <text response="0">Pain while Stair Climbing</text>
+        <text response="0">Night pains</text>
+        <text response="0">Rest pains</text>
+        <text response="0">Pain on standing or weight-bearing</text>
+        <text response="1">Morning Stiffness</text>
+        <text response="1">Stiffness later in the day</text>
+        <text response="1">Difficulty in climbing up the stairs</text>
+        <text response="1">Difficulty in climbing down the stairs</text>
+        <text response="1">Difficulty in standing for a period of time</text>
+        <text response="1">Difficulty in bending forwards to the floor</text>
+        <text response="1">Difficulty in walking on flat surfaces</text>
+        <text response="1">Difficulty in getting in or out of the car</text>
+        <text response="1">Difficulty while shopping</text>
+        <text response="1">Difficulty in putting on the socks</text>
+        <text response="1">Difficulty in taking off the socks</text>
+        <text response="1">Difficulty in lying in the bed</text>
+        <text response="1">Difficulty in rising up from the bed</text>
+        <text response="1">Difficulty in getting in or out of bath</text>
+        <text response="1">Difficulty while sitting</text>
+        <text response="1">Difficulty while rising from seat</text>
+        <text response="1">Difficulty in getting on or off the toilet</text>
+        <text response="1">Difficulty in doing light domestic duties</text>
+        <text response="1">Difficulty in doing heavy domestic duties</text>
+    </questions>
+
+    <total value="96">
+        <details>Higher scores indicate worse pain, stiffness, and functional limitations.</details>
+    </total>
+</test>

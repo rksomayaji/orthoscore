@@ -27,6 +27,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mainMenu;
@@ -40,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainMenu = (DrawerLayout) findViewById(R.id.drawer);
 
-        String[] testArray = getResources().getStringArray(R.array.tests);
+        ArrayList<String> testArray = getAvailableTests();
         menuAdapter = new ArrayAdapter<>(this, R.layout.list_layout,testArray);
         menuList = (ListView) findViewById(R.id.test_list);
         menuList.setAdapter(menuAdapter);
@@ -48,23 +52,15 @@ public class MainActivity extends AppCompatActivity {
         menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0:
-                        WomacFragment womacFragment = new WomacFragment();
+                TestFragment fragment = new TestFragment();
+                Bundle args = new Bundle();
+                args.putInt(OrthoScores.TEST_NUMBER,i);
+                fragment.setArguments(args);
 
-                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.fragment_container,womacFragment);
-                        ft.commit();
-                        mainMenu.closeDrawer(GravityCompat.START);
-                        break;
-                    case 1:
-                        OHSFragment ohsFragment = new OHSFragment();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container,ohsFragment)
-                                .commit();
-                        mainMenu.closeDrawer(GravityCompat.START);
-                        break;
-                }
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container,fragment)
+                        .commit();
+                mainMenu.closeDrawer(GravityCompat.START);
             }
         });
         if(findViewById(R.id.fragment_container) != null){
@@ -82,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
     private void checkForUpdate() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         if(settings.getBoolean("auto_update",true)) new getUpdate().execute();
+    }
+
+    private ArrayList<String> getAvailableTests() {
+        TestXMLParserHelper helper = new TestXMLParserHelper(this);
+
+        return helper.getTestList();
     }
 
     @Override

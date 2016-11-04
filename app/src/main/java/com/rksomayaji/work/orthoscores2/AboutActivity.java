@@ -40,6 +40,7 @@ public class AboutActivity extends AppCompatActivity {
 
         if(getIntent().getBooleanExtra(OrthoScores.NOTIFICATION,false)) new getUpdate().execute();
 
+        assert pInfo != null;
         String versionCode = pInfo.versionName;
         TextView versionCodeView = (TextView) findViewById(R.id.textview_version_code);
         versionCodeView.setText("Version: " + versionCode);
