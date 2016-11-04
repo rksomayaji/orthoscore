@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthopedicscores;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

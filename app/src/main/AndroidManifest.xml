@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rksomayaji.work.orthoscores2">
+    package="com.rksomayaji.work.orthopedicscores">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,16 +10,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.rksomayaji.work.orthopedicscores.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".SettingsActivity" />
-        <receiver android:exported="false" android:name=".helper.DownloadBroadcastReceiverHelper">
+        <activity android:name="com.rksomayaji.work.orthopedicscores.AboutActivity" />
+        <activity android:name="com.rksomayaji.work.orthopedicscores.SettingsActivity" />
+        <receiver android:exported="false" android:name="com.rksomayaji.work.orthopedicscores.helper.DownloadBroadcastReceiverHelper">
             <intent-filter>
                 <action android:name="com.rksomayaji.work.orthoscores2.DOWNLOAD_UPDATE"/>
                 <action android:name="com.rksomayaji.work.orthoscores2.IGNORE_UPDATE"/>

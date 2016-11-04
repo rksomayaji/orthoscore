@@ -1,10 +1,9 @@
-package com.rksomayaji.work.orthoscores2.helper;
+package com.rksomayaji.work.orthopedicscores.helper;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.Xml;
 
-import com.rksomayaji.work.orthoscores2.TestQuestion;
+import com.rksomayaji.work.orthopedicscores.TestQuestion;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

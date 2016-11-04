@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2.helper;
+package com.rksomayaji.work.orthopedicscores.helper;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

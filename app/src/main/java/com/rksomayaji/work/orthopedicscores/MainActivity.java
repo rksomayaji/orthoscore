@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthopedicscores;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -21,13 +21,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.rksomayaji.work.orthoscores2.helper.HTTPHelper;
+import com.rksomayaji.work.orthopedicscores.helper.HTTPHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+import com.rksomayaji.work.orthopedicscores.helper.TestXMLParserHelper;
 
 import java.util.ArrayList;
 

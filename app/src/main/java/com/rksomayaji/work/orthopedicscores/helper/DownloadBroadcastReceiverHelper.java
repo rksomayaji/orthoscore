@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2.helper;
+package com.rksomayaji.work.orthopedicscores.helper;
 
 import android.app.DownloadManager;
 import android.app.NotificationManager;
@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.rksomayaji.work.orthoscores2.OrthoScores;
+import com.rksomayaji.work.orthopedicscores.OrthoScores;
 
 /**
  * Created by sushanth on 10/21/16.

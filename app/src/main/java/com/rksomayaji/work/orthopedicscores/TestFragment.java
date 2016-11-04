@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthopedicscores;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.rksomayaji.work.orthoscores2.adapter.TestArrayAdapter;
-import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+import com.rksomayaji.work.orthopedicscores.adapter.TestArrayAdapter;
+import com.rksomayaji.work.orthopedicscores.helper.TestXMLParserHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthopedicscores;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+import com.rksomayaji.work.orthopedicscores.helper.TestXMLParserHelper;
 
 import java.util.ArrayList;
 

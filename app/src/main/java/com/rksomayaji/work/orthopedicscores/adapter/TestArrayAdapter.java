@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2.adapter;
+package com.rksomayaji.work.orthopedicscores.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,8 +12,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.rksomayaji.work.orthoscores2.R;
-import com.rksomayaji.work.orthoscores2.TestQuestion;
+import com.rksomayaji.work.orthopedicscores.R;
+import com.rksomayaji.work.orthopedicscores.TestQuestion;
 
 import java.util.ArrayList;
 

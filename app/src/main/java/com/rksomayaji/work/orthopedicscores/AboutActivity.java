@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthopedicscores;
 
 import android.app.ProgressDialog;
 import android.content.pm.PackageInfo;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.rksomayaji.work.orthoscores2.helper.HTTPHelper;
+import com.rksomayaji.work.orthopedicscores.helper.HTTPHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

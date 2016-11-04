@@ -1,4 +1,4 @@
-package com.rksomayaji.work.orthoscores2;
+package com.rksomayaji.work.orthopedicscores;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.rksomayaji.work.orthoscores2.helper.TestXMLParserHelper;
+import com.rksomayaji.work.orthopedicscores.helper.TestXMLParserHelper;
 
 import org.xmlpull.v1.XmlPullParserException;
 
