@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<test>
+    <name>Oxford Hip Score</name>
+
+    <response>
+
+        <response-array type="pain">
+            <item value="4">(4) No pain</item>
+            <item value="3">(3) Very Mild</item>
+            <item value="2">(2) Mild</item>
+            <item value="1">(1) Moderate</item>
+            <item value="0">(0) Severe</item>
+        </response-array>
+
+        <response-array type="difficulty">
+            <item value="4">(4) No</item>
+            <item value="3">(3) Very Little</item>
+            <item value="2">(2) Moderate</item>
+            <item value="1">(1) Extreme</item>
+            <item value="0">(0) Impossible</item>
+        </response-array>
+
+        <response-array type="time">
+            <item value="4">(4) \> 30 mins</item>
+            <item value="3">(3) 16-30 mins</item>
+            <item value="2">(2) 5-15 mins</item>
+            <item value="1">(1) Around the house</item>
+            <item value="0">(0) Impossible</item>
+        </response-array>
+
+        <response-array type="frequency">
+            <item value="4">(4) Never</item>
+            <item value="3">(3) Sometimes</item>
+            <item value="2">(2) Often</item>
+            <item value="1">(1) Most of the time</item>
+            <item value="0">(0) All of the time</item>
+        </response-array>
+
+        <response-array type="days">
+            <item value="4">(4) Never</item>
+            <item value="3">(3) 1-2</item>
+            <item value="2">(2) Some</item>
+            <item value="1">(1) Most</item>
+            <item value="0">(0) Every</item>
+        </response-array>
+    </response>
+
+    <questions>
+        <text response="0">How would you describe the pain you usually had from your hip?</text>
+        <text response="1">Have you had any trouble with washing and drying yourself (all over) because of your hip?</text>
+        <text response="1">Have you had any trouble getting in and out of a car or using public transport because of your hip?</text>
+        <text response="1">Have you been able to put on a pair of socks, stockings or tights?</text>
+        <text response="1">Can you do the household shopping on your own?</text>
+        <text response="2">For how long have you been able to walk before pain from your hip becomes severe? (with or without a stick)</text>
+        <text response="1">Have you been able to climb a flight of stairs?</text>
+        <text response="0">After a meal (sat at a table), how painful has it been for you to stand up from a chair because of your hip?</text>
+        <text response="3">Have you been limping when walking, because of your hip?</text>
+        <text response="4">Have you had any sudden, severe pain - \'shooting\', \'stabbing\' or \'spasms\' -from the affected hip?</text>
+        <text response="1">How much has pain from your hip interfered with your usual work (including housework)?</text>
+        <text response="4">Have you been troubled by pain from your hip in bed at night?</text>
+    </questions>
+
+    <total value="48">
+        <details>Lower scores indicate worse pain, stiffness, and functional limitations.</details>
+    </total>
+</test>
