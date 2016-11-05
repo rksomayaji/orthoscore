@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
 <test>
+	<!--
+	- <name></name> Tag describes the name of the test. Read by the 
+	-               Parser to display the name of the test.
+	-->
     <name>Test</name>
 
+	<!--
+	- <response></response> Tag enlists the various responses to the 
+	-                       test questions. 
+	- 	<response-array></response-array>   Tag describes the array in 
+	-                                       the selectable spinner
+	-		<item></item>   Tag describes the response text with 'value' 
+	-                       attribute describing the value attached to 
+	-                       the selected response
+	-->
+	<!--
+	-	TODO:
+	-	* Describing a default value if all the values are same.
+	-->
     <response>
-        <!--<response-value>
-            <value>0</value>
-            <value>1</value>
-            <value>2</value>
-            <value>3</value>
-        </response-value> -->
-
         <response-array type="pain">
             <item value="0">never pains</item>
             <item value="1">sometimes pains</item>
@@ -25,11 +35,23 @@
         </response-array>
     </response>
 
+	<!--
+    - <questions></questions> Tag describes the various test questions.
+    -   <text></text>   Tag describes the text of the question. The 
+    -                   response attribute describes the responses array
+    -                   to the specific test question.
+    -->
     <questions>
         <text response="1">Question 1</text>
         <text response="0">Question 2</text>
     </questions>
 
+    <!--
+    - <total></total>   Tag describes the maximum attainable result as 
+    -                   given by the value attribute.
+    -   <details></details> Tag describes brief discription of the 
+    -                       result.
+    -->
     <total value="6">
         <details>This is a test</details>
     </total>
