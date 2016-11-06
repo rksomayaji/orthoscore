@@ -41,6 +41,9 @@ public class DownloadBroadcastReceiverHelper extends BroadcastReceiver {
 
                 nm.cancel(notID);
                 Log.i("BR", "Ignoring");
+                break;
+            case DownloadManager.ACTION_DOWNLOAD_COMPLETE:
+
         }
     }
 }

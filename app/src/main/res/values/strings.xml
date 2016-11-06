@@ -17,4 +17,5 @@
 
     <string name="test">Test Name</string>
     <string name="copy_text">Copy Result</string>
+    <string name="install_update">Automatically install downloaded update.</string>
 </resources>
