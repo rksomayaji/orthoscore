@@ -2,7 +2,7 @@
     <string name="app_name">Orthopedic Scores</string>
     <string name="submit_button">Submit</string>
     <string name="result_default">Will show result here</string>
-    <string name="checkupdate_button">Check for Update</string>
+    <string name="check_update_button">Check for Update</string>
     <string name="about_menu_title">About</string>
     <string name="settings_menu_title">Settings</string>
     <string name="url_download">https://api.github.com/repos/rksomayaji/orthoscore/releases/latest</string>
