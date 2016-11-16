@@ -42,6 +42,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent appShortcutIntent = getIntent();
+        int launch = appShortcutIntent.getIntExtra("APP_SHORTCUT",0);
+        if (launch == 1){
+            Log.i("MAIN", String.valueOf(launch));
+            launchTest(appShortcutIntent.getIntExtra(OrthoScores.TEST_NUMBER,0));
+        }else {
+            Log.i("MAIN", String.valueOf(launch));
+            if(findViewById(R.id.fragment_container) != null){
+                if (savedInstanceState != null) return;
+
+                MainFragment mainFragment = new MainFragment();
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.fragment_container,mainFragment);
+                ft.commit();
+            }
+        }
+
         mainMenu = (DrawerLayout) findViewById(R.id.drawer);
 
         ArrayList<String> testArray = getAvailableTests();
@@ -52,26 +70,10 @@ public class MainActivity extends AppCompatActivity {
         menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TestFragment fragment = new TestFragment();
-                Bundle args = new Bundle();
-                args.putInt(OrthoScores.TEST_NUMBER,i);
-                fragment.setArguments(args);
-
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container,fragment)
-                        .commit();
+                launchTest(i);
                 mainMenu.closeDrawer(GravityCompat.START);
             }
         });
-        if(findViewById(R.id.fragment_container) != null){
-            if (savedInstanceState != null) return;
-
-            MainFragment mainFragment = new MainFragment();
-
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.fragment_container,mainFragment);
-            ft.commit();
-        }
         checkForUpdate();
     }
 
@@ -110,6 +112,18 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void launchTest (int i){
+        TestFragment fragment = new TestFragment();
+        Bundle args = new Bundle();
+        args.putInt(OrthoScores.TEST_NUMBER,i);
+        fragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,fragment)
+                .commit();
+    }
+
     private class getUpdate extends AsyncTask<Void,Void,String[]> {
 
         String url = getString(R.string.url_download);

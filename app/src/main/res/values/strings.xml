@@ -17,4 +17,9 @@
 
     <string name="test">Test Name</string>
     <string name="copy_text">Copy Result</string>
+
+    <string name="womac">WOMAC</string>
+    <string name="womac_disabled">WOMAC Not Available</string>
+    <string name="ohs">Oxford Hip Score</string>
+    <string name="ohs_disabled">Oxford Hip Score Not Avaliable</string>
 </resources>
