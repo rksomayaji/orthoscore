@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="ohs"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher_ohs"
+        android:shortcutShortLabel="@string/ohs"
+        android:shortcutLongLabel="@string/ohs"
+        android:shortcutDisabledMessage="@string/ohs_disabled">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="com.rksomayaji.work.orthopedicscores"
+            android:targetClass="com.rksomayaji.work.orthopedicscores.MainActivity">
+            <extra android:name="APP_SHORTCUT" android:value="1"/>
+            <extra android:name="TEST_NUMBER" android:value="0"/>
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="womac"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher_womac"
+        android:shortcutShortLabel="@string/womac"
+        android:shortcutLongLabel="@string/womac"
+        android:shortcutDisabledMessage="@string/womac_disabled">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="com.rksomayaji.work.orthopedicscores"
+            android:targetClass="com.rksomayaji.work.orthopedicscores.MainActivity">
+            <extra android:name="APP_SHORTCUT" android:value="1"/>
+            <extra android:name="TEST_NUMBER" android:value="1"/>
+        </intent>
+    </shortcut>
+</shortcuts>
