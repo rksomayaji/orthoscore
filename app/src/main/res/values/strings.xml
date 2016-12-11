@@ -22,4 +22,6 @@
     <string name="womac_disabled">WOMAC Not Available</string>
     <string name="ohs">Oxford Hip Score</string>
     <string name="ohs_disabled">Oxford Hip Score Not Avaliable</string>
+    <string name="current_version">Current Version</string>
+    <string name="update_version">Update</string>
 </resources>

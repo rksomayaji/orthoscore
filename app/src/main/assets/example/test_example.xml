@@ -49,7 +49,7 @@
     <!--
     - <total></total>   Tag describes the maximum attainable result as 
     -                   given by the value attribute.
-    -   <details></details> Tag describes brief discription of the 
+    -   <details></details> Tag describes brief description of the
     -                       result.
     -->
     <total value="6">
