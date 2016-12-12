@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rksomayaji.work.orthopedicscores.helper.TestXMLParserHelper;
 
@@ -58,6 +59,7 @@ public class ResultFragment extends Fragment {
                 ClipData clip = ClipData.newPlainText("result",String.valueOf(score));
 
                 clipboard.setPrimaryClip(clip);
+                Toast.makeText(getContext(),"Score copied",Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -69,6 +71,7 @@ public class ResultFragment extends Fragment {
                 ClipData clip = ClipData.newPlainText("result",String.valueOf(score));
 
                 clipboard.setPrimaryClip(clip);
+                Toast.makeText(getContext(),"Score copied",Toast.LENGTH_SHORT).show();
             }
         });
         return v;
