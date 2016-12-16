@@ -3,6 +3,7 @@
     package="com.rksomayaji.work.orthopedicscores">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,7 @@
         </activity>
         <activity android:name="com.rksomayaji.work.orthopedicscores.AboutActivity" />
         <activity android:name="com.rksomayaji.work.orthopedicscores.SettingsActivity" />
-        <receiver android:exported="false"
+        <receiver
             android:name="com.rksomayaji.work.orthopedicscores.helper.DownloadBroadcastReceiverHelper">
             <intent-filter>
                 <action android:name="com.rksomayaji.work.orthoscores2.DOWNLOAD_UPDATE"/>

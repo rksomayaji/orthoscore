@@ -11,7 +11,8 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:title="@string/install_update"
-            android:key="auto_install" />
+            android:key="auto_install"
+            android:summary="@string/install_update_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>
