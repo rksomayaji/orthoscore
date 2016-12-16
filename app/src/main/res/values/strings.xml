@@ -24,4 +24,6 @@
     <string name="ohs_disabled">Oxford Hip Score Not Avaliable</string>
     <string name="current_version">Current Version</string>
     <string name="update_version">Update</string>
+    <string name="install_update">Automatically install downloaded update.</string>
+    <string name="install_update_summary">Automatically download the update and install it. It downloads the update only when you are on Wi-Fi.</string>
 </resources>

@@ -1,9 +1,14 @@
 package com.rksomayaji.work.orthopedicscores;
 
+import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
@@ -79,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkForUpdate() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        if(settings.getBoolean("auto_update",true)) new getUpdate().execute();
+        if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
     }
 
     private ArrayList<String> getAvailableTests() {
@@ -124,6 +129,15 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+
+    private boolean checkInternet() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean networkIsPresent = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        Log.i("Main", String.valueOf(networkIsPresent));
+        return networkIsPresent;
+    }
+
     private class getUpdate extends AsyncTask<Void,Void,String[]> {
 
         String url = getString(R.string.url_download);
@@ -166,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 String versionInstalled = getPackageManager().getPackageInfo(getPackageName(),0).versionName;
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String ignoreTag = sp.getString(OrthoScores.IGNORE_TAG,null);
+                boolean downloadNow = sp.getBoolean("auto_install",false);
                 Log.i("Main", "Ignoring " + ignoreTag);
 
                 if(!s[0].equals(versionInstalled) && !s[0].equals(ignoreTag)) {
@@ -197,16 +212,30 @@ public class MainActivity extends AppCompatActivity {
                             ignoreIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
 
-                    NotificationCompat.Builder updateNotification = new NotificationCompat.Builder(getApplicationContext());
-                    updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                            .setContentTitle("Update Available")
-                            .setContentText("Version: " + s[0])
-                            .setContentIntent(updatePI)
-                            .addAction(0,"DOWNLOAD",downloadPI)
-                            .addAction(0,"IGNORE",ignorePI)
-                            .setAutoCancel(true);
-
                     NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    NotificationCompat.Builder updateNotification = new NotificationCompat.Builder(getApplicationContext());
+
+                    if(!downloadNow) {
+                        updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                                .setContentTitle("Update Available")
+                                .setContentText("Version: " + s[0])
+                                .setContentIntent(updatePI)
+                                .addAction(0,"DOWNLOAD",downloadPI)
+                                .addAction(0,"IGNORE",ignorePI)
+                                .setAutoCancel(true);
+                    }else{
+                        Uri address = Uri.parse(s[1]);
+                        DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                        DownloadManager.Request request = new DownloadManager.Request(address);
+                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+                        long downloadID = manager.enqueue(request);
+                        updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                                .setAutoCancel(true)
+                                .setContentText("Downloading update apk file version: " + s[0])
+                                .setContentTitle("Downloading...");
+
+                        Log.i("Main", "Downloading " + String.valueOf(downloadID));
+                    }
 
                     notifManager.notify(notificationID,updateNotification.build());
                 }
