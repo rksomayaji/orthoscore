@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
@@ -34,6 +35,7 @@ import org.json.JSONObject;
 
 import com.rksomayaji.work.orthopedicscores.helper.TestXMLParserHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -211,10 +213,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setAutoCancel(true);
                     }else{
                         Uri address = Uri.parse(s[1]);
-                        DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                        DownloadManager.Request request = new DownloadManager.Request(address);
-                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
-                        long downloadID = manager.enqueue(request);
+                        long downloadID = downloadUpdate(address);
                         updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
                                 .setAutoCancel(true)
                                 .setContentText("Downloading update apk file version: " + s[0])
@@ -228,6 +227,21 @@ public class MainActivity extends AppCompatActivity {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }
+
+        private long downloadUpdate(Uri address) {
+            String destination = OrthoScores.DESTINATION;
+            Uri dest = Uri.parse("file://" + destination);
+
+            File file = new File(String.valueOf(dest));
+            if(file.exists())file.delete();
+
+            DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(address);
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+            request.setDestinationUri(dest);
+
+            return manager.enqueue(request);
         }
     }
 }

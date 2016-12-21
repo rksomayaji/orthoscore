@@ -7,15 +7,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.rksomayaji.work.orthopedicscores.AboutActivity;
+import com.rksomayaji.work.orthopedicscores.BuildConfig;
 import com.rksomayaji.work.orthopedicscores.OrthoScores;
 import com.rksomayaji.work.orthopedicscores.R;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * Created by sushanth on 10/21/16.
@@ -59,10 +67,20 @@ public class DownloadBroadcastReceiverHelper extends BroadcastReceiver {
                 if(cursor.moveToFirst()){
                     if(cursor.getCount() > 0){
                         if(cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL){
-                            Uri file = dm.getUriForDownloadedFile(intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID,0));
+                            Uri file = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", new File(OrthoScores.DESTINATION));
                             Intent installIntent = new Intent(Intent.ACTION_VIEW)
                                     .setDataAndType(file,"application/vnd.android.package-archive");
+
+                            List<ResolveInfo> resolvedIntentActivities = context.getPackageManager().queryIntentActivities(installIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                            for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+                                String packageName = resolvedIntentInfo.activityInfo.packageName;
+
+                                context.grantUriPermission(packageName, file, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            }
+
                             PendingIntent pi = PendingIntent.getActivity(context,0,installIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
                             downloadedNotification.setContentTitle("Update Download Complete")
                                     .setContentText("Click to install update")
                                     .setContentIntent(pi)
@@ -81,6 +99,7 @@ public class DownloadBroadcastReceiverHelper extends BroadcastReceiver {
                     downloadedNotification.setContentTitle("Update Download Failed")
                             .setContentText("Download Failed...")
                             .setContentIntent(pi)
+                            .setAutoCancel(true)
                             .setSmallIcon(R.drawable.ic_info_black_24dp);
 
                 }
