@@ -84,6 +84,7 @@ public class DownloadBroadcastReceiverHelper extends BroadcastReceiver {
                             downloadedNotification.setContentTitle("Update Download Complete")
                                     .setContentText("Click to install update")
                                     .setContentIntent(pi)
+                                    .setAutoCancel(true)
                                     .setSmallIcon(R.drawable.ic_info_black_24dp);
                             Log.i("DwnldMgr",file.getPath());
                         }
