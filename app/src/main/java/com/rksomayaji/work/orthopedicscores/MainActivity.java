@@ -1,17 +1,21 @@
 package com.rksomayaji.work.orthopedicscores;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +30,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.rksomayaji.work.orthopedicscores.helper.HTTPHelper;
 
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mainMenu;
     ArrayAdapter<String> menuAdapter;
     ListView menuList;
+    private static final int WRITE_PERMISSION_REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +92,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkForUpdate() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+        if(Build.VERSION.SDK_INT >= 23){
+            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+            }else{
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION_REQUEST_CODE);
+            }
+        }else{
+            if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case WRITE_PERMISSION_REQUEST_CODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+                    if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+                }else{
+                    Toast.makeText(this,
+                            "Kindly give permission for writing on external storage in app settings to download the update",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
+        }
     }
 
     private ArrayList<String> getAvailableTests() {
