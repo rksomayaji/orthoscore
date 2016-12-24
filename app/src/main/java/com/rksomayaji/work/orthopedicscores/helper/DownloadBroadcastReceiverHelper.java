@@ -1,5 +1,6 @@
 package com.rksomayaji.work.orthopedicscores.helper;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,12 +14,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.rksomayaji.work.orthopedicscores.AboutActivity;
 import com.rksomayaji.work.orthopedicscores.BuildConfig;
+import com.rksomayaji.work.orthopedicscores.MainActivity;
 import com.rksomayaji.work.orthopedicscores.OrthoScores;
 import com.rksomayaji.work.orthopedicscores.R;
 
@@ -42,8 +45,23 @@ public class DownloadBroadcastReceiverHelper extends BroadcastReceiver {
             case OrthoScores.DOWNLOAD_UPDATE:
                 Uri address = Uri.parse(intent.getStringExtra(OrthoScores.TAG_OR_URL));
                 DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                long downloadID = manager.enqueue(new DownloadManager.Request(address));
+                DownloadManager.Request request = new DownloadManager.Request(address);
+                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI| DownloadManager.Request.NETWORK_MOBILE);
+                request.setDestinationUri(Uri.parse("file://" + OrthoScores.DESTINATION));
 
+
+
+                long downloadID = 0;
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if(ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                        downloadID = manager.enqueue(request);
+                    }else {
+                        Intent aboutActivity = new Intent(context,AboutActivity.class);
+                        aboutActivity.putExtra("CHECK_PERMISSION",true);
+                        aboutActivity.putExtra(OrthoScores.TAG_OR_URL,intent.getStringExtra(OrthoScores.TAG_OR_URL));
+                        context.startActivity(aboutActivity);
+                    }
+                }else downloadID = manager.enqueue(request);
                 nm.cancel(notID);
                 Log.i("BR", "Downloading " + String.valueOf(downloadID));
                 break;

@@ -32,8 +32,8 @@
         <receiver
             android:name="com.rksomayaji.work.orthopedicscores.helper.DownloadBroadcastReceiverHelper">
             <intent-filter>
-                <action android:name="com.rksomayaji.work.orthoscores2.DOWNLOAD_UPDATE"/>
-                <action android:name="com.rksomayaji.work.orthoscores2.IGNORE_UPDATE"/>
+                <action android:name="com.rksomayaji.work.orthopedicscores.DOWNLOAD_UPDATE"/>
+                <action android:name="com.rksomayaji.work.orthopedicscores.IGNORE_UPDATE"/>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
             </intent-filter>
         </receiver>
