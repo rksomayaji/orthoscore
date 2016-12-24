@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<test>
+    <name>DASH</name>
+    
+    <response>
+        <response-array type="difficulty">
+            <item value="1">No Difficulty</item>
+            <item value="2">Mild Difficulty</item>
+            <item value="3">Moderate Difficulty</item>
+            <item value="4">Severe Difficulty</item>
+            <item value="5">Unable</item>
+        </response-array>
+        <response-array type="interference">
+            <item value="1">Not at all</item>
+            <item value="2">Slightly</item>
+            <item value="3">Moderately</item>
+            <item value="4">Quite a bit</item>
+            <item value="5">Extremely</item>
+        </response-array>
+        <response-array type="severity">
+            <item value="1">None</item>
+            <item value="2">Mild</item>
+            <item value="3">Moderate</item>
+            <item value="4">Severe</item>
+            <item value="5">Extreme</item>
+        </response-array>
+        <response-array type="confidence">
+            <item value="1">Strongly Disagree</item>
+            <item value="2">Disagree</item>
+            <item value="3">Neither Agree nor Disagree</item>
+            <item value="4">Agree</item>
+            <item value="5">Strongly Agree</item>
+        </response-array>
+    </response>
+    
+    <questions>
+        <text response="0">Ability to Open a tight or new jar</text>
+        <text response="0">Ability to Write</text>
+        <text response="0">Ability to Turn a key</text>
+        <text response="0">Ability to Prepare a meal</text>
+        <text response="0">Ability to Push open a heavy door</text>
+        <text response="0">Ability to Place an object on a shelf above your head</text>
+        <text response="0">Ability to Do heavy household chores (e.g. wash walls or floors)</text>
+        <text response="0">Ability to Garden or do yard work</text>
+        <text response="0">Ability to Make a bed</text>
+        <text response="0">Ability to Carry a shopping bag or briefcase</text>
+        <text response="0">Ability to Carry a heavy object (over 10 lbs.)</text>
+        <text response="0">Ability to Change a light bulb overhead</text>
+        <text response="0">Ability to Wash or blow dry your hair</text>
+        <text response="0">Ability to Wash your back</text>
+        <text response="0">Ability to Put on a pullover sweater</text>
+        <text response="0">Ability to Use a knife to cut food</text>
+        <text response="0">Ability to Recreational activities which require little effort (e.g. card playing, knitting)</text>
+        <text response="0">Ability to Recreational activities in which you take some force or impact through your arm, shoulder or hand (e.g. golf, hammering, tennis)</text>
+        <text response="0">Ability to Recreational activities in which you move your arm freely (e.g. playing Frisbee, badminton)</text>
+        <text response="0">Ability to Manage transportation needs (getting from one place to another)</text>
+        <text response="0">Ability to Sexual activities</text>
+        <text response="1">During the past week, to what extent has your arm, shoulder or hand problem interfered with your normal social activities with family, friends, neighbors or groups?</text>
+        <text response="1">During the past week, were you limited in your or other regular activities as a result of your arm, shoulder, or hand problem?</text>
+        <text response="2">Severity of Arm, shoulder or hand pain.</text>
+        <text response="2">Severity of Arm, shoulder or hand pain when you performed any specific activity.</text>
+        <text response="2">Severity of Tingling (pins and needles) in your arm, shoulder or hand.</text>
+        <text response="2">Severity of Weakness in your arm, shoulder or hand.</text>
+        <text response="2">Severity of Stiffness in your arm, shoulder or hand.</text>
+        <text response="0">During the past week, how much difficulty have you had sleeping because of the pain in your arm, shoulder or hand?</text>
+        <text response="3">I feel less capable, less confident or less useful because of my arm, shoulder or hand problem.</text>
+    </questions>
+    
+    <total value="100">
+        <details>A higher score indicates greater disability. The DASH is scored in two components: the disability/symptom questions (30 items, scored 1-5) and the optional high performance sport/music or work section (4 items, scored 1-5). This test does not include the optional sections. The goal of the optional modules is to identify the specific difficulties that professional athletes/performing artists or other groups of workers might experience but which may not affect their activities of daily living and consequently may go “undetected” in the 30-item portion of the DASH.</details>
+    </total>
+</test>

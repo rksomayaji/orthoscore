@@ -3,6 +3,7 @@ package com.rksomayaji.work.orthopedicscores;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import java.util.ArrayList;
 public class TestFragment extends Fragment {
 
     ArrayList<TestQuestion> questions;
+    ArrayList<String> tests;
+    int i;
 
     public TestFragment () {
 
@@ -45,10 +48,10 @@ public class TestFragment extends Fragment {
         Button submitButton = (Button) v.findViewById(R.id.button_submit);
 
         Bundle args = getArguments();
-        final int i = args.getInt(OrthoScores.TEST_NUMBER);
+        i = args.getInt(OrthoScores.TEST_NUMBER);
 
         TestXMLParserHelper helper = new TestXMLParserHelper(getContext());
-        final ArrayList<String> tests = helper.getTestList();
+        tests = helper.getTestList();
 
         testName.setAllCaps(true);
         testName.setText(tests.get(i));
@@ -84,12 +87,19 @@ public class TestFragment extends Fragment {
     }
 
     private int getTestScore(ArrayList<TestQuestion> questions) {
-        int s = 0;
+        float s = 0;
 
         for (TestQuestion q : questions) {
             s += q.getSelectedValue();
         }
-        return s;
+        Log.i(tests.get(i),String.valueOf(s));
+        switch (tests.get(i)){
+            case "DASH":
+                float t = s;
+                s = ((t/30)-1)*25;
+                Log.i(tests.get(i),String.valueOf(s));
+        }
+        return Math.round(s);
     }
 
     private ArrayList<TestQuestion> getTestQuestions(int test) throws IOException {

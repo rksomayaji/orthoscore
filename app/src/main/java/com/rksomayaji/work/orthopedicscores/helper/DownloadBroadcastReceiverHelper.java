@@ -49,8 +49,6 @@ public class DownloadBroadcastReceiverHelper extends BroadcastReceiver {
                 request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI| DownloadManager.Request.NETWORK_MOBILE);
                 request.setDestinationUri(Uri.parse("file://" + OrthoScores.DESTINATION));
 
-
-
                 long downloadID = 0;
                 if (Build.VERSION.SDK_INT >= 23) {
                     if(ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
