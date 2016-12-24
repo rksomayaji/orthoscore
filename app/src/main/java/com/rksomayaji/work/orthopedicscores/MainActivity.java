@@ -90,14 +90,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkForUpdate() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        if(Build.VERSION.SDK_INT >= 23){
-            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+
+        if(settings.getBoolean("auto_update",false) && settings.getBoolean("auto_install",false)){
+            if(Build.VERSION.SDK_INT >= 23){
+                if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    if(checkInternet()) new getUpdate().execute();
+                }else{
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION_REQUEST_CODE);
+                }
             }else{
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION_REQUEST_CODE);
+                if(checkInternet()) new getUpdate().execute();
             }
-        }else{
-            if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+        }else if (settings.getBoolean("auto_update",false) && !settings.getBoolean("auto_install",false)){
+            if(checkInternet()) new getUpdate().execute();
         }
     }
 
@@ -106,8 +111,7 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode){
             case WRITE_PERMISSION_REQUEST_CODE:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-                    if(settings.getBoolean("auto_update",true) && checkInternet()) new getUpdate().execute();
+                    if(checkInternet()) new getUpdate().execute();
                 }else{
                     Toast.makeText(this,
                             "Kindly give permission for writing on external storage in app settings to download the update",
@@ -232,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
 
                     NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                     NotificationCompat.Builder updateNotification = new NotificationCompat.Builder(getApplicationContext());
+
+                    Log.i("Main", String.valueOf(downloadNow));
 
                     if(!downloadNow) {
                         updateNotification.setSmallIcon(R.drawable.ic_notifications_black_24dp)
